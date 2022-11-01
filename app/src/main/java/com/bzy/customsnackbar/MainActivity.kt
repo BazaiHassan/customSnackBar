@@ -1,12 +1,11 @@
 package com.bzy.customsnackbar
 
 import android.annotation.SuppressLint
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.custom_snackbar_view.*
+
 
 class MainActivity : AppCompatActivity() {
     @SuppressLint("ShowToast")
@@ -15,14 +14,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         button.setOnClickListener {
-            val snackBar = Snackbar.make(it, "", Snackbar.LENGTH_LONG)
-            val customSnackView: View =
-                layoutInflater.inflate(R.layout.custom_snackbar, null)
-            snackBar.view.setBackgroundColor(Color.TRANSPARENT)
-            val snackBarLayout = snackBar.view as Snackbar.SnackbarLayout
-            snackBarLayout.setPadding(0, 0, 0, 0)
-            snackBarLayout.addView(customSnackView, 0)
-            snackBar.show()
+            CustomSnackBar.success(it,"Success Message","This is message body",R.mipmap.ic_launcher).show()
+        }
+        button2.setOnClickListener {
+            CustomSnackBar.error(it,"Error Message","This is message body",R.mipmap.ic_launcher).show()
+        }
+
+        button3.setOnClickListener {
+            CustomSnackBar.info(it,"Info Message","This is message body",R.mipmap.ic_launcher).show()
         }
     }
 }
